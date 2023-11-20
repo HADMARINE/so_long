@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 14:42:23 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/20 22:57:12 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define STRUCT_H
 
 # include "so_long.h"
-# include "libft.h"
-# include <stddef.h>
 
 typedef struct s_pos {
 	size_t	x;

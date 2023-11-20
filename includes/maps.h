@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:14:53 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 16:35:30 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/20 23:04:21 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 # include "so_long.h"
 
 t_list	*read_map(char *filename);
-BOOL	verify_wall_map(t_list *map);
-BOOL	verify_elements_in_map(t_list *map);
-BOOL	verify_path_map(t_list *map);
+bool	verify_wall_map(t_list *map);
+bool	verify_elements_in_map(t_list *map);
+bool	verify_path_map(t_list *map);
 
 typedef struct s_elements_map {
-	BOOL	item;
-	BOOL	exit;
-	BOOL	person;
+	bool	item;
+	bool	exit;
+	bool	person;
 }	t_elements_map;
 
 #endif

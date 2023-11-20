@@ -6,32 +6,32 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:15:22 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 17:29:11 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/20 23:05:49 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "maps.h"
 
-static BOOL	verify_length(t_list *read_value)
+static bool	verify_length(t_list *read_value)
 {
 	size_t	len;
 
 	if (!read_value)
-		return (FALSE);
+		return (false);
 	if (ft_lstsize(read_value) <= 3)
-		return (FALSE);
+		return (false);
 	len = ft_strlen(read_value->content);
 	if (len <= 3)
-		return (FALSE);
+		return (false);
 	while (read_value != NULL)
 	{
 		if (len != ft_strlen(read_value->content))
 		{
-			return (FALSE);
+			return (false);
 		}
 		read_value = read_value->next;
 	}
-	return (TRUE);
+	return (true);
 }
 
 static void	*clear_and_close(int fd, t_list **lst)
@@ -70,7 +70,7 @@ t_list	*read_map(char *filename)
 		ft_lstadd_back(&read_value, tmplst);
 		s = get_next_line(fd);
 	}
-	if (verify_length(read_value) == FALSE)
+	if (verify_length(read_value) == false)
 		return (clear_and_close(fd, &read_value));
 	close(fd);
 	return (read_value);

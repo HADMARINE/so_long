@@ -6,14 +6,14 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:10:55 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 16:42:40 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/20 23:03:59 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "maps.h"
 
-BOOL	verify_path_map(t_list *map)
+bool	verify_path_map(t_list *map)
 {
 	(void)map;
-	return (TRUE);
+	return (true);
 }

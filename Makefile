@@ -36,8 +36,7 @@ MINILIBX_A = mlx_linux/libmlx_Linux.a
 
 all: $(NAME)
 $(NAME): libcompile $(OBJS)
-# $(CC) -o $(NAME) $(OBJS) $(LIBFT) $(MINILIBX_A) $(MINILIBX_FLAGS) -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
-	$(CC) $(OBJS) -Llibft -l:libft.a -Lft_printf -l:libftprintf.a -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(OBJS) $(DEBUG) -Llibft -l:libft.a -Lft_printf -l:libftprintf.a -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 clean:
 	rm $(OBJS) $(OBJB) -f
 fclean: clean libclean
@@ -61,4 +60,4 @@ ftprintfclean:
 	$(MAKE) fclean -C ft_printf
 
 %.o: %.c
-	$(CC) -c $< -o $@ $(MINILIBX_FLAGS) $(CFLAGS) $(INCLUDES)
+	$(CC) -c $< -o $@ $(MINILIBX_FLAGS) $(CFLAGS) $(INCLUDES) $(DEBUG)

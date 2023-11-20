@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:50:23 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 15:56:27 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/20 23:02:52 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,5 @@
 # define SL_KEY_A 0x61
 # define SL_KEY_S 0x73
 # define SL_KEY_D 0x64
-
-# define BOOL unsigned int
-# define TRUE 1
-# define FALSE 0
 
 #endif

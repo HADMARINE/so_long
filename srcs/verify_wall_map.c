@@ -6,13 +6,13 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:10:09 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 16:26:15 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/20 23:06:16 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "maps.h"
 
-static BOOL	verify_horizontal_wall_map(char *s)
+static bool	verify_horizontal_wall_map(char *s)
 {
 	int	i;
 
@@ -20,22 +20,22 @@ static BOOL	verify_horizontal_wall_map(char *s)
 	while (*(s + i))
 	{
 		if (*(s + i) != SL_MAP_WALL)
-			return (FALSE);
+			return (false);
 		i++;
 	}
-	return (TRUE);
+	return (true);
 }
 
-BOOL	verify_wall_map(t_list *map)
+bool	verify_wall_map(t_list *map)
 {
 	int		i;
 	int		limit;
 	t_list	*stash;
 
-	if (verify_horizontal_wall_map((char *)map->content) == FALSE
+	if (verify_horizontal_wall_map((char *)map->content) == false
 		|| verify_horizontal_wall_map((char *)(ft_lstlast(map)->content))
-		== FALSE)
-		return (FALSE);
+		== false)
+		return (false);
 	i = 1;
 	limit = ft_lstsize(map) - 1;
 	while (i < limit)
@@ -44,8 +44,8 @@ BOOL	verify_wall_map(t_list *map)
 		if (*((char *)stash->content) != SL_MAP_WALL
 			|| *((char *)stash->content + ft_strlen((char *)stash->content) - 1)
 			!= SL_MAP_WALL)
-			return (FALSE);
+			return (false);
 		i++;
 	}
-	return (TRUE);
+	return (true);
 }

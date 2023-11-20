@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:58:49 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 15:17:03 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/21 00:07:07 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ static void	img_lst_clear(t_list **lst, t_mlxvars *vars)
 	*lst = NULL;
 }
 
-BOOL	free_mlx(t_mlxvars *p)
+bool	free_mlx(t_mlxvars *p)
 {
-	if (p->mlx == NULL)
-		return (FALSE);
-	if (p->mlx_win)
+	if (p == NULL || p->mlx == NULL)
+		return (false);
+	if (p->mlx_win != NULL)
 	{
 		mlx_destroy_window(p->mlx, p->mlx_win);
 		p->mlx_win = NULL;
@@ -46,5 +46,5 @@ BOOL	free_mlx(t_mlxvars *p)
 	{
 		img_lst_clear(&(p->imgs), p);
 	}
-	return (TRUE);
+	return (true);
 }
