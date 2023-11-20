@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:50:23 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/17 17:03:45 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/20 15:56:27 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 # define SL_WINDOW_SIZE_W 800
 # define SL_WINDOW_SIZE_H 600
+
+# define SL_MAX_WINDOW_SIZE_W 1920
+# define SL_MAX_WINDOW_SIZE_H 900
+
+# define SL_IMG_SIZE 32
+
+# define SL_PROGRAM_NAME "SO_LONG"
 
 # define SL_MAP_BLANK '0'
 # define SL_MAP_WALL '1'
@@ -27,5 +34,9 @@
 # define SL_KEY_A 0x61
 # define SL_KEY_S 0x73
 # define SL_KEY_D 0x64
+
+# define BOOL unsigned int
+# define TRUE 1
+# define FALSE 0
 
 #endif

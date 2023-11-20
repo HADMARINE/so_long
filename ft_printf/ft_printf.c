@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 14:42:23 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/13 13:44:52 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/13 18:00:28 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "ft_printf.h"
 
-# include "so_long.h"
-# include "libft.h"
-# include <stddef.h>
+int	parser(const char *str, va_list *valist);
+int	counter(const char *str);
 
-typedef struct s_pos {
-	size_t	x;
-	size_t	y;
-}	t_pos;
+int	ft_printf(const char *str, ...)
+{
+	va_list	valist;
+	int		len;
 
-typedef struct s_gamedat {
-	t_pos	*userpos;
-}	t_gamedat;
-
-typedef struct s_mlxvars {
-	void		*mlx;
-	void		*mlx_win;
-	t_list		*imgs;
-	t_gamedat	*gamedat;
-}	t_mlxvars;
-
-#endif
+	va_start(valist, str);
+	len = parser(str, &valist);
+	va_end(valist);
+	return (len);
+}

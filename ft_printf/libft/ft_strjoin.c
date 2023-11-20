@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 14:42:23 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/07 16:37:13 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/10 11:44:10 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "libft.h"
 
-# include "so_long.h"
-# include "libft.h"
-# include <stddef.h>
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*dest;
+	char	*dp;
 
-typedef struct s_pos {
-	size_t	x;
-	size_t	y;
-}	t_pos;
-
-typedef struct s_gamedat {
-	t_pos	*userpos;
-}	t_gamedat;
-
-typedef struct s_mlxvars {
-	void		*mlx;
-	void		*mlx_win;
-	t_list		*imgs;
-	t_gamedat	*gamedat;
-}	t_mlxvars;
-
-#endif
+	if (!s1 || !s2)
+		return (NULL);
+	dest = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!dest)
+		return (NULL);
+	dp = dest;
+	while (*s1)
+		*dp++ = *s1++;
+	while (*s2)
+		*dp++ = *s2++;
+	*dp = '\0';
+	return (dest);
+}

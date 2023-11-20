@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 14:42:23 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/07 15:14:47 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/16 11:23:11 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	minus;
+	int	num;
 
-# include "so_long.h"
-# include "libft.h"
-# include <stddef.h>
-
-typedef struct s_pos {
-	size_t	x;
-	size_t	y;
-}	t_pos;
-
-typedef struct s_gamedat {
-	t_pos	*userpos;
-}	t_gamedat;
-
-typedef struct s_mlxvars {
-	void		*mlx;
-	void		*mlx_win;
-	t_list		*imgs;
-	t_gamedat	*gamedat;
-}	t_mlxvars;
-
-#endif
+	i = 0;
+	minus = 0;
+	num = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-')
+	{
+		i++;
+		minus++;
+	}
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num = (num * 10) + (str[i] - '0');
+		i++;
+	}
+	if (minus % 2 == 1)
+		num = -num;
+	return (num);
+}

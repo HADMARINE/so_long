@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 11:32:47 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 17:23:35 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/20 12:56:00 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/20 17:26:52 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(void)
+t_mlxvars	init_mlxvars(void)
 {
 	t_mlxvars	vars;
 
-	vars = init_mlxvars();
-	if (mlx_pipeline(&vars) == FALSE)
+	vars.mlx = NULL;
+	vars.mlx_win = NULL;
+	vars.imgs = NULL;
+	// TODO : initialize gamedat
+	// vars.gamedat = NULL;
+	vars.mlx = mlx_init();
+	if (!vars.mlx)
+		exit(EXIT_FAILURE);
+	vars.mlx_win = mlx_new_window(vars.mlx,
+			SL_WINDOW_SIZE_W, SL_WINDOW_SIZE_H, SL_PROGRAM_NAME);
+	if (!vars.mlx_win)
 	{
-		ft_printf("Error\n");
-		if (free_mlx(&vars) == FALSE)
-		{
-			ft_printf("Error with free\n");
-		}
-		exit(1);
+		free_mlx(&vars);
+		exit(EXIT_FAILURE);
 	}
-	return (0);
+	return (vars); 
 }

@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 14:42:23 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/08 14:48:03 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/10 11:47:36 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "libft.h"
 
-# include "so_long.h"
-# include "libft.h"
-# include <stddef.h>
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	char		*str;
+	char		*strp;
 
-typedef struct s_pos {
-	size_t	x;
-	size_t	y;
-}	t_pos;
-
-typedef struct s_gamedat {
-	t_pos	*userpos;
-}	t_gamedat;
-
-typedef struct s_mlxvars {
-	void		*mlx;
-	void		*mlx_win;
-	t_list		*imgs;
-	t_gamedat	*gamedat;
-}	t_mlxvars;
-
-#endif
+	if (!s || !f)
+		return (NULL);
+	str = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	strp = str;
+	while (*s)
+	{
+		*strp = f(strp - str, *s);
+		strp++;
+		s++;
+	}
+	*strp = '\0';
+	return (str);
+}

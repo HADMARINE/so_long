@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dfurneau <dfurneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 11:32:47 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 17:23:35 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/10 14:46:32 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/11 17:16:56 by dfurneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(void)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	t_mlxvars	vars;
-
-	vars = init_mlxvars();
-	if (mlx_pipeline(&vars) == FALSE)
-	{
-		ft_printf("Error\n");
-		if (free_mlx(&vars) == FALSE)
-		{
-			ft_printf("Error with free\n");
-		}
-		exit(1);
-	}
-	return (0);
+	if (!lst || !del)
+		return ;
+	del(lst->content);
+	free(lst);
 }

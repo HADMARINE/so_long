@@ -1,30 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utoa.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 11:32:47 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 17:23:35 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/13 17:10:42 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/13 18:07:55 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ft_printf.h"
 
-int	main(void)
+static unsigned int	getlength(unsigned int n)
 {
-	t_mlxvars	vars;
+	unsigned int	len;
 
-	vars = init_mlxvars();
-	if (mlx_pipeline(&vars) == FALSE)
+	len = 2;
+	while (n >= 10)
 	{
-		ft_printf("Error\n");
-		if (free_mlx(&vars) == FALSE)
-		{
-			ft_printf("Error with free\n");
-		}
-		exit(1);
+		len++;
+		n /= 10;
 	}
-	return (0);
+	return (len);
+}
+
+char	*utoa(unsigned int n)
+{
+	char	*str;
+	char	*sp;
+
+	str = (char *)malloc(getlength(n) * sizeof(char));
+	if (!str)
+		return (NULL);
+	sp = str + getlength(n) - 1;
+	*sp-- = '\0';
+	while (sp - str >= 0)
+	{
+		*sp-- = '0' + (n % 10);
+		n /= 10;
+	}
+	return (str);
 }

@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 14:42:23 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/06 14:46:46 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/08 16:05:44 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "libft.h"
 
-# include "so_long.h"
-# include "libft.h"
-# include <stddef.h>
+void	*ft_memmove(void *dest, const void *src, size_t size)
+{
+	char	*d;
+	char	*s;
 
-typedef struct s_pos {
-	size_t	x;
-	size_t	y;
-}	t_pos;
-
-typedef struct s_gamedat {
-	t_pos	*userpos;
-}	t_gamedat;
-
-typedef struct s_mlxvars {
-	void		*mlx;
-	void		*mlx_win;
-	t_list		*imgs;
-	t_gamedat	*gamedat;
-}	t_mlxvars;
-
-#endif
+	if (dest == src || size == 0)
+		return (dest);
+	if (dest > src && dest - src < (long)size)
+	{
+		d = (char *)dest + size - 1;
+		s = (char *)src + size - 1;
+		while (size--)
+		{
+			*d-- = *s--;
+		}
+		return (dest);
+	}
+	d = (char *)dest;
+	s = (char *)src;
+	return (ft_memcpy(dest, src, size));
+}

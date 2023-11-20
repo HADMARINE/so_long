@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 14:42:23 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/07 16:27:13 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/09 12:55:34 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "libft.h"
 
-# include "so_long.h"
-# include "libft.h"
-# include <stddef.h>
+char	*ft_strdup(const char *src)
+{
+	char	*s;
+	char	*p;
+	char	*sp;
 
-typedef struct s_pos {
-	size_t	x;
-	size_t	y;
-}	t_pos;
-
-typedef struct s_gamedat {
-	t_pos	*userpos;
-}	t_gamedat;
-
-typedef struct s_mlxvars {
-	void		*mlx;
-	void		*mlx_win;
-	t_list		*imgs;
-	t_gamedat	*gamedat;
-}	t_mlxvars;
-
-#endif
+	s = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1));
+	if (!s)
+		return (NULL);
+	p = (char *)src;
+	sp = s;
+	while (*p)
+	{
+		*sp++ = *p++;
+	}
+	*sp = '\0';
+	return (s);
+}

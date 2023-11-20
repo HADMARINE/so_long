@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   puthexadecimal.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 14:42:23 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/13 15:38:24 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/13 18:31:24 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "ft_printf.h"
 
-# include "so_long.h"
-# include "libft.h"
-# include <stddef.h>
+int	puthexadecimal(unsigned long long v, short maj)
+{
+	char	lst[17];
+	int		count;
 
-typedef struct s_pos {
-	size_t	x;
-	size_t	y;
-}	t_pos;
-
-typedef struct s_gamedat {
-	t_pos	*userpos;
-}	t_gamedat;
-
-typedef struct s_mlxvars {
-	void		*mlx;
-	void		*mlx_win;
-	t_list		*imgs;
-	t_gamedat	*gamedat;
-}	t_mlxvars;
-
-#endif
+	count = 0;
+	if (maj == 1)
+		ft_strlcpy(lst, "0123456789ABCDEF", 17);
+	else
+		ft_strlcpy(lst, "0123456789abcdef", 17);
+	if (v >= 16)
+	{
+		count += puthexadecimal(v / (unsigned long long)16, maj);
+	}
+	ft_putchar_fd(lst[v % (unsigned long long)16], 1);
+	count++;
+	return (count);
+}

@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:28:47 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/15 14:31:45 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/20 13:35:58 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ size_t	manage_remains(char buf[], char **cur, size_t *count, size_t newlen)
 		i++;
 	}
 	if (i != BUFFER_SIZE)
-		*((char *)s + i++) = '\n';
+		*((char *)s + i++) = '\0';
 	*cur = copymem(*cur, s, count, i);
 	removefront(buf, i, BUFFER_SIZE);
 	free(s);
