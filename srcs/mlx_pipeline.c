@@ -6,13 +6,13 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:02:57 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/21 00:11:33 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/21 00:30:13 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	key_manager(int key, t_mlxvars *p)
+static int	keyboard_pipeline(int key, t_mlxvars *p)
 {
 	if (key == SL_KEY_ESC)
 	{
@@ -40,11 +40,19 @@ static bool	maps_pipeline(t_mlxvars *vars)
 	return (true);
 }
 
+static bool	image_pipeline(t_mlxvars *vars)
+{
+	(void)vars;
+	return (true);
+}
+
 bool	mlx_pipeline(t_mlxvars *vars)
 {
 	if (maps_pipeline(vars) == false)
 		return (false);
-	mlx_key_hook(vars->mlx_win, key_manager, vars);
+	if (image_pipeline(vars) == false)
+		return (false);
+	mlx_key_hook(vars->mlx_win, keyboard_pipeline, vars);
 	mlx_loop(vars->mlx);
 	return (true);
 }
