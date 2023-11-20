@@ -6,7 +6,7 @@
 #    By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 11:05:03 by lhojoon           #+#    #+#              #
-#    Updated: 2023/11/17 14:39:22 by lhojoon          ###   ########.fr        #
+#    Updated: 2023/11/17 17:06:11 by lhojoon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ MINILIBX_FLAGS = -I/usr/include -Imlx_linux
 # -I/usr/include -Imlx-linux/lib -lmlx-linux/libmlx_Linux.a
 
 DIR = srcs
-SRCS_RAW = main.c
+SRCS_RAW = main.c \
+			get_next_line.c \
+			get_next_line_utils.c
 SRCS = $(addprefix $(DIR)/,$(SRCS_RAW))
 OBJS = $(SRCS:c=o)
 INCLUDES = -I./includes -I./libft

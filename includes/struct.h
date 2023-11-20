@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   definitions.h                                      :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 11:50:23 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/17 17:03:45 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/17 17:01:37 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINITIONS_H
-# define DEFINITIONS_H
+#ifndef STRUCT_H
+# define STRUCT_H
 
-# define SL_WINDOW_SIZE_W 800
-# define SL_WINDOW_SIZE_H 600
+# include <stdlib.h>
 
-# define SL_MAP_BLANK '0'
-# define SL_MAP_WALL '1'
-# define SL_MAP_ITEM 'C'
-# define SL_MAP_EXIT 'E'
-# define SL_MAP_PERSON 'P'
+typedef struct s_mlxvars {
+	void	*mlx;
+	void	*mlx_win;
+}	t_mlxvars;
 
-# define SL_KEY_ESC 0xFF1B
-# define SL_KEY_W 0x77
-# define SL_KEY_A 0x61
-# define SL_KEY_S 0x73
-# define SL_KEY_D 0x64
+typedef struct s_pos {
+	size_t	x;
+	size_t	y;
+}	t_pos;
 
 #endif
