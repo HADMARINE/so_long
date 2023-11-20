@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:56:00 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 17:26:52 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/20 17:27:03 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ t_mlxvars	init_mlxvars(void)
 		free_mlx(&vars);
 		exit(EXIT_FAILURE);
 	}
-	return (vars); 
+	return (vars);
 }
