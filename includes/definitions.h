@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:50:23 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 23:02:52 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/21 15:42:49 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@
 # define SL_KEY_A 0x61
 # define SL_KEY_S 0x73
 # define SL_KEY_D 0x64
+# define SL_X11_EVENT_DESTROY_NOTIFY 17
 
 #endif

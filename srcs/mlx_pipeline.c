@@ -6,23 +6,11 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:02:57 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/21 00:11:33 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/21 17:06:15 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	key_manager(int key, t_mlxvars *p)
-{
-	if (key == SL_KEY_ESC)
-	{
-		if (free_mlx(p) == false)
-			exit(EXIT_FAILURE);
-		else
-			exit(EXIT_SUCCESS);
-	}
-	return (0);
-}
 
 static bool	maps_pipeline(t_mlxvars *vars)
 {
@@ -30,6 +18,8 @@ static bool	maps_pipeline(t_mlxvars *vars)
 
 	(void)vars;
 	map = read_map("maps/level1.ber");
+	if (map == NULL)
+		return (false);
 	if (verify_wall_map(map) == false
 		|| verify_elements_in_map(map) == false
 		|| verify_path_map(map) == false)
@@ -40,11 +30,20 @@ static bool	maps_pipeline(t_mlxvars *vars)
 	return (true);
 }
 
+static bool	hook_pipeline(t_mlxvars *vars)
+{
+	mlx_key_hook(vars->mlx_win, key_event_manager, vars);
+	mlx_hook(vars->mlx_win, SL_X11_EVENT_DESTROY_NOTIFY,
+		0L, x11_destroy_event, vars);
+	return (true);
+}
+
 bool	mlx_pipeline(t_mlxvars *vars)
 {
 	if (maps_pipeline(vars) == false)
 		return (false);
-	mlx_key_hook(vars->mlx_win, key_manager, vars);
+	if (hook_pipeline(vars) == false)
+		return (false);
 	mlx_loop(vars->mlx);
 	return (true);
 }

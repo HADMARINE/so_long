@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   x11_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 11:32:47 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/21 15:43:19 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/21 15:37:02 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/21 15:37:51 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "events.h"
 
-int	main(void)
+int	x11_destroy_event(t_mlxvars *vars)
 {
-	t_mlxvars	vars;
-
-	vars = init_mlxvars();
-	if (mlx_pipeline(&vars) == false)
-	{
-		ft_printf("Error\n");
-		if (free_mlx(&vars) == false)
-		{
-			ft_printf("Error with free\n");
-		}
+	if (free_mlx(vars) == false)
 		exit(EXIT_FAILURE);
-	}
+	else
+		exit(EXIT_SUCCESS);
 	return (0);
 }

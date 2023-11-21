@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:03:47 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 23:02:49 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/21 17:08:35 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@
 # include "manager.h"
 # include "maps.h"
 # include "utils.h"
+# include "events.h"
+# include "images.h"
 
 #endif

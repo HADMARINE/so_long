@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:57:44 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 23:08:07 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/21 17:06:15 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 t_mlxvars	init_mlxvars(void);
 bool		free_mlx(t_mlxvars *p);
 bool		mlx_pipeline(t_mlxvars *vars);
+int			key_event_manager(int key, t_mlxvars *p);
 
 #endif

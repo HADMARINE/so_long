@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   key_event_manager.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 11:32:47 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/21 15:43:19 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/21 15:40:02 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/21 17:06:16 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "manager.h"
 
-int	main(void)
+int	key_event_manager(int key, t_mlxvars *p)
 {
-	t_mlxvars	vars;
-
-	vars = init_mlxvars();
-	if (mlx_pipeline(&vars) == false)
+	if (key == SL_KEY_ESC)
 	{
-		ft_printf("Error\n");
-		if (free_mlx(&vars) == false)
-		{
-			ft_printf("Error with free\n");
-		}
-		exit(EXIT_FAILURE);
+		if (free_mlx(p) == false)
+			exit(EXIT_FAILURE);
+		else
+			exit(EXIT_SUCCESS);
 	}
 	return (0);
 }

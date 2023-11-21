@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:07:42 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 23:06:10 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/21 16:03:43 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,32 @@ static t_elements_map	init_elements_map(void)
 	return (map);
 }
 
+static bool	verify_element(char value, t_elements_map *elements)
+{
+	if (value == SL_MAP_ITEM)
+	{
+		elements->item = true;
+		return (true);
+	}
+	if (value == SL_MAP_EXIT)
+	{
+		if (elements->exit == true)
+			return (false);
+		elements->exit = true;
+		return (true);
+	}
+	if (value == SL_MAP_PERSON)
+	{
+		if (elements->person == true)
+			return (false);
+		elements->person = true;
+		return (true);
+	}
+	if (value != SL_MAP_BLANK && value != SL_MAP_WALL)
+		return (false);
+	return (true);
+}
+
 bool	verify_elements_in_map(t_list *map)
 {
 	t_elements_map	elements;
@@ -30,17 +56,14 @@ bool	verify_elements_in_map(t_list *map)
 
 	elements = init_elements_map();
 	hlen = ft_strlen((char *)map->content);
+	map = map->next;
 	while (map->next != NULL)
 	{
 		i = 1;
 		while (i < hlen - 1)
 		{
-			if (*((char *)map->content + i) == SL_MAP_ITEM)
-				elements.item = true;
-			if (*((char *)map->content + i) == SL_MAP_EXIT)
-				elements.exit = true;
-			if (*((char *)map->content + i) == SL_MAP_PERSON)
-				elements.person = true;
+			if (verify_element(*((char *)map->content + i), &elements) == false)
+				return (false);
 			i++;
 		}
 		map = map->next;
