@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/22 01:30:55 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/22 15:47:14 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,24 @@ typedef struct s_mlximage {
 typedef struct s_path_node {
 	size_t	dist_e;
 	float	dist_s;
-	t_pos	pos;
+	t_pos	*pos;
 
 }	t_path_node;
 
+typedef enum e_direction {
+	LEFT = 0,
+	RIGHT = 1,
+	UP = 2,
+	DOWN = 3
+}	t_direction;
+
 t_pos		get_init_pos(void);
+t_pos		get_init_pos_value(size_t x, size_t y);
 t_pos		*get_init_pos_ptr(void);
+t_pos		*get_init_pos_ptr_value(size_t x, size_t y);
 t_gamedat	get_init_gamedat(void);
 t_mlxvars	get_init_mlxvars(void);
+t_path_node	init_path_node(void);
+t_path_node	*init_path_node_value_ptr(size_t e, float s, t_pos *pos);
 
 #endif

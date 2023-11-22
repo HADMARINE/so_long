@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_lstchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 15:23:21 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/22 13:03:45 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/22 12:59:21 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/22 13:03:50 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "utils.h"
 
-# include "so_long.h"
+t_list	*ft_lstchr(t_list *lst, bool(*chr)(void *, void *), void *dat)
+{
+	t_list	*lp;
 
-t_list	*ft_lstget_idx(t_list *lst, size_t idx);
-void	ft_dellast(t_list **lst, void (*del)(void *));
-t_list	*ft_lstchr(t_list *lst, bool(*chr)(void *, void *), void *dat);
-
-#endif
+	lp = lst;
+	while (lp != NULL)
+	{
+		if (chr(lp->content, dat) == true)
+			return (lp);
+		lp = lp->next;
+	}
+	return (NULL);
+}

@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:03:47 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/22 01:32:51 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/22 15:43:26 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <math.h>
+# include <stddef.h>
 
 # include "definitions.h"
 # include "struct.h"

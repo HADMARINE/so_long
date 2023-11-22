@@ -6,32 +6,11 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:56:00 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/21 23:22:37 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/22 12:25:49 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-t_pos	get_init_pos(void)
-{
-	t_pos	vars;
-
-	vars.x = 0;
-	vars.y = 0;
-	return (vars);
-}
-
-t_pos	*get_init_pos_ptr(void)
-{
-	t_pos	*vars;
-
-	vars = (t_pos *)malloc(sizeof(t_pos));
-	if (!vars)
-		return (NULL);
-	vars->x = 0;
-	vars->y = 0;
-	return (vars);
-}
 
 t_gamedat	get_init_gamedat(void)
 {

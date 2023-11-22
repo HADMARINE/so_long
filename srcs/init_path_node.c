@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   init_path_node.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 15:23:21 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/22 13:03:45 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/22 12:20:39 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/22 13:13:28 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "struct.h"
 
-# include "so_long.h"
+t_path_node	init_path_node(void)
+{
+	t_path_node	node;
 
-t_list	*ft_lstget_idx(t_list *lst, size_t idx);
-void	ft_dellast(t_list **lst, void (*del)(void *));
-t_list	*ft_lstchr(t_list *lst, bool(*chr)(void *, void *), void *dat);
+	node.dist_e = 0;
+	node.dist_s = 0;
+	node.pos = get_init_pos_ptr();
+	return (node);
+}
 
-#endif
+t_path_node	*init_path_node_value_ptr(size_t e, float s, t_pos *pos)
+{
+	t_path_node	*node;
+
+	node = (t_path_node *)malloc(sizeof(t_path_node));
+	node->dist_e = e;
+	node->dist_s = s;
+	node->pos = pos;
+	return (node);
+}

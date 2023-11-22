@@ -32,7 +32,9 @@ SRCS_RAW = main.c \
 			image_manager.c \
 			utils_get_object_pos_list_map.c \
 			heap.c \
-			utils_ft_dellast.c
+			utils_ft_dellast.c \
+			init_path_node.c \
+			init_pos.c
 SRCS = $(addprefix $(DIR)/,$(SRCS_RAW))
 OBJS = $(SRCS:c=o)
 INCLUDES = -I./includes -I./libft -I./ft_printf/includes

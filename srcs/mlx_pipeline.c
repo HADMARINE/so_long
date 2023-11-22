@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:02:57 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/22 02:47:47 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/22 14:11:49 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static bool	maps_pipeline(t_mlxvars *vars)
 	map = read_map("maps/level1.ber");
 	if (map == NULL)
 		return (false);
-	// if (verify_wall_map(map) == false
-	// 	|| verify_elements_in_map(map) == false
-	// 	|| verify_path_map(map) == false)
-	// {
-	// 	ft_lstclear(&map, free);
-	// 	return (false);
-	// }
+	if (verify_wall_map(map) == false
+		|| verify_elements_in_map(map) == false
+		|| verify_path_map(map) == false)
+	{
+		ft_lstclear(&map, free);
+		return (false);
+	}
 	return (true);
 }
 
