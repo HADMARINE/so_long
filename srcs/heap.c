@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 01:32:26 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/22 03:10:44 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/22 03:15:59 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ void	*pop_heap(t_heap *heap, size_t (*eval)(void *))
 	if (child + 1 <= heap->count)
 	{
 		tp = ft_lstget_idx(heap->lst, child - 1);
-		if (eval(tp->content) < eval(tp->next->content))
+		if (eval(tp->content) > eval(tp->next->content))
 			child++;
 	}
 	while (child <= heap->count && eval(ft_lstget_idx(heap->lst, child - 1))
-		> eval(ft_lstget_idx(heap->lst, parent - 1)))
+		< eval(ft_lstget_idx(heap->lst, parent - 1)))
 		exec_while_pop_heap(heap, &parent, &child);
 	return (val);
 }
@@ -81,7 +81,7 @@ void	push_heap(t_heap *heap, void *value, size_t (*eval)(void *))
 	child = heap->count;
 	parent = child / 2;
 	while (child > 1 && eval(ft_lstget_idx(heap->lst, child - 1))
-		> eval(ft_lstget_idx(heap->lst, parent - 1)))
+		< eval(ft_lstget_idx(heap->lst, parent - 1)))
 	{
 		swap_element_heap(ft_lstget_idx(heap->lst, child - 1),
 			ft_lstget_idx(heap->lst, parent - 1));
