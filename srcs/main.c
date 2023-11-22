@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:32:47 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/21 00:37:48 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/22 03:11:36 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(void)
 		{
 			ft_printf("Error with free\n");
 		}
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	return (0);
 }

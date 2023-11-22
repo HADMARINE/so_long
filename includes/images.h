@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   images.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 15:23:21 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/22 02:55:24 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/21 17:08:02 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/21 17:08:56 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef IMAGES_H
+# define IMAGES_H
 
 # include "so_long.h"
 
-t_list	*ft_lstget_idx(t_list *lst, size_t idx);
-void	ft_dellast(t_list **lst, void (*del)(void *));
+t_mlximage	get_init_image(t_mlxvars *vars, int w, int h);
+t_mlximage	get_new_sprite_image(t_mlxvars *vars, char *path);
 
 #endif

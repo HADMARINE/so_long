@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/21 00:28:58 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/22 01:30:55 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,40 @@ typedef struct s_imgdat {
 }	t_imgdat;
 
 typedef struct s_gamedat {
-	t_pos	*userpos;
+	t_pos	userpos;
 }	t_gamedat;
 
 typedef struct s_mlxvars {
 	void		*mlx;
 	void		*mlx_win;
 	t_list		*imgs;
-	t_gamedat	*gamedat;
+	t_gamedat	gamedat;
 }	t_mlxvars;
+
+typedef struct s_mlximage {
+	void	*ref;
+	t_pos	size;
+	char	*pixels;
+	int		bpp;
+	int		line_size;
+	int		endian;
+}	t_mlximage;
+
+/**
+ * dist_e 	: distance from entry
+ * dist_s	: distance heuristic to destination (sortie)
+ * pos		: position, coordination
+*/
+typedef struct s_path_node {
+	size_t	dist_e;
+	float	dist_s;
+	t_pos	pos;
+
+}	t_path_node;
+
+t_pos		get_init_pos(void);
+t_pos		*get_init_pos_ptr(void);
+t_gamedat	get_init_gamedat(void);
+t_mlxvars	get_init_mlxvars(void);
 
 #endif

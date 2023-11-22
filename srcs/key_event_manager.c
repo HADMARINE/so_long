@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   key_event_manager.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 15:23:21 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/22 02:55:24 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/21 15:40:02 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/21 17:06:16 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "manager.h"
 
-# include "so_long.h"
-
-t_list	*ft_lstget_idx(t_list *lst, size_t idx);
-void	ft_dellast(t_list **lst, void (*del)(void *));
-
-#endif
+int	key_event_manager(int key, t_mlxvars *p)
+{
+	if (key == SL_KEY_ESC)
+	{
+		if (free_mlx(p) == false)
+			exit(EXIT_FAILURE);
+		else
+			exit(EXIT_SUCCESS);
+	}
+	return (0);
+}

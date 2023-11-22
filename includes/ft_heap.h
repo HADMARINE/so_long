@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_heap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 15:23:21 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/22 02:55:24 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/22 01:31:20 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/22 02:42:09 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef FT_HEAP_H
+# define FT_HEAP_H
 
 # include "so_long.h"
 
-t_list	*ft_lstget_idx(t_list *lst, size_t idx);
-void	ft_dellast(t_list **lst, void (*del)(void *));
+typedef struct s_heap {
+	t_list	*lst;
+	size_t	count;
+}	t_heap;
+
+t_heap	init_heap(void);
+void	*pop_heap(t_heap *heap, size_t (*eval)(void *));
+void	push_heap(t_heap *heap, void *value, size_t (*eval)(void *));
+
 
 #endif
