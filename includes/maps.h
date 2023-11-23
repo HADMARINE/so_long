@@ -6,14 +6,15 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:14:53 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/22 15:53:41 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/23 08:59:37 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAPS_H
 # define MAPS_H
 
-# include "so_long.h"
+# include "struct.h"
+# include <stdbool.h>
 
 t_list	*read_map(char *filename);
 bool	verify_wall_map(t_list *map);

@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 23:09:34 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/22 02:36:38 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/23 09:30:59 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ t_pos	*get_object_pos_map(t_list *map, char element)
 	t_pos	*pos;
 	t_list	*mapp;
 
-	pos = get_init_pos_ptr();
+	pos = get_init_pos_ptr_value(0, 1);
 	if (!pos)
 		return (NULL);
 	mapp = map->next;
 	while (mapp->next != NULL)
 	{
-		pos->x = 0;
+		pos->x = 1;
 		while (*((char *)mapp->content + pos->x))
 		{
 			if (*((char *)mapp->content + pos->x) == element)

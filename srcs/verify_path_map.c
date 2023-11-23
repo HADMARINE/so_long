@@ -6,11 +6,11 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:10:55 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/22 15:54:27 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/23 09:48:38 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "maps.h"
+#include "so_long.h"
 
 /**
  * Get heuristic cost to reach dest from pos
@@ -23,17 +23,24 @@ static float	get_heuristic_cost(t_pos *dest, t_pos *pos)
 	return (sqrt(abs((int)(dest->x - pos->x)) + abs((int)(dest->y - pos->y))));
 }
 
-static bool	lstchr_vpm(void *val)
+/**
+ * val : t_path_node
+ * dat : t_pos
+*/
+static bool	lstchr_vpm(void *val, void *dat)
 {
-	return true;
+	if (((t_path_node *)val)->pos->x == ((t_pos *)dat)->x
+		&& ((t_path_node *)val)->pos->y == ((t_pos *)dat)->y)
+		return (true);
+	return (false);
 }
 
-static int	eval_path_node(t_path_node *node)
+static size_t	eval_path_node(void *node)
 {
-	int	val;
+	size_t	val;
 
 	val = 0;
-	val += node->dist_e + node->dist_s;
+	val += ((t_path_node *)node)->dist_e + ((t_path_node *)node)->dist_s;
 	return (val);
 }
 
@@ -50,6 +57,33 @@ static t_pos	get_offset_by_dir(t_direction dir)
 	else if (dir == DOWN)
 		offset = get_init_pos_value(0, 1);
 	return (offset);
+}
+
+static t_path_node
+	*get_map_value_by_dir(t_list *map, t_direction dir,
+	t_pos *pos, t_heap *heap)
+{
+	t_pos	offset;
+	t_list	*lp;
+	t_list	*lhp;
+
+	offset = get_offset_by_dir(dir);
+	lp = ft_lstget_idx(map, pos->x + offset.x);
+	if (!lp)
+		return (NULL);
+	if (*(((char *)lp->content) + pos->y + offset.y) == SL_MAP_WALL
+		|| *(((char *)lp->content) + pos->y + offset.y) == '\0')
+		return (NULL);
+	ft_printf("%p", ((t_path_node *)lp->content)->pos);
+	lhp = ft_lstchr(heap->lst, lstchr_vpm, ((t_path_node *)lp->content)->pos);
+	if (lhp != NULL)
+	{
+		push_heap(heap, init_path_node_value_ptr(
+				0, 0.0, ((t_path_node *)lp->content)->pos), eval_path_node);
+		lhp = ft_lstchr(heap->lst, lstchr_vpm,
+				((t_path_node *)lp->content)->pos);
+	}
+	return ((t_path_node *)lhp->content);
 }
 
 static size_t	get_smallest_cost_from_e(t_list *map, t_pos *pos, t_heap *heap)
@@ -71,32 +105,6 @@ static size_t	get_smallest_cost_from_e(t_list *map, t_pos *pos, t_heap *heap)
 	return (min_e);
 }
 
-static t_path_node
-	*get_map_value_by_dir(t_list *map, t_direction dir,
-	t_pos *pos, t_heap *heap)
-{
-	t_pos	offset;
-	t_list	*lp;
-	t_list	*lhp;
-
-	offset = get_offset_by_dir(dir);
-	lp = ft_lstget_idx(map, pos->x + offset.x - 1);
-	if (!lp)
-		return (NULL);
-	if (*(((char *)lp->content) + pos->y + offset.y - 1) == SL_MAP_WALL
-		|| *(((char *)lp->content) + pos->y + offset.y - 1) == NULL)
-		return (NULL);
-	lhp = ft_lstchr(heap->lst, lstchr_vpm, ((t_path_node *)lp->content)->pos);
-	if (lhp != NULL)
-	{
-		push_heap(heap, init_path_node_value_ptr(
-				0, 0.0, ((t_path_node *)lp->content)->pos), eval_path_node);
-		lhp = ft_lstchr(heap->lst, lstchr_vpm,
-				((t_path_node *)lp->content)->pos);
-	}
-	return ((t_path_node *)lhp->content);
-}
-
 static bool	
 	update_neighbors_dist(t_list *map, t_pos *pos, t_pos *dest, t_heap *heap)
 {
@@ -110,10 +118,14 @@ static bool
 	{
 		lp = get_map_value_by_dir(map, (t_direction)i, pos, heap);
 		if (!lp)
+		{
+			i++;
 			continue ;
+		}
 		is_exist = true;
 		lp->dist_s = get_heuristic_cost(dest, lp->pos);
 		lp->dist_e = get_smallest_cost_from_e(map, lp->pos, heap);
+		i++;
 	}
 	return (is_exist);
 }
@@ -136,6 +148,11 @@ bool	verify_path_map(t_list *map)
 		if (update_neighbors_dist(map, ((t_path_node *)heap.lst->content)->pos,
 				pos_s, &heap) == false)
 			return (false); // free values
+		if (((t_path_node *)heap.lst->content)->pos->x == pos_s->x
+			&& ((t_path_node *)heap.lst->content)->pos->y == pos_s->y)
+		{
+			return (true); // free values
+		}
 	}
 	return (true); // free values
 }

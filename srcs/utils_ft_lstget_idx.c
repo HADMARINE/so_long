@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:23:14 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/20 15:26:49 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/23 09:21:47 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_list	*ft_lstget_idx(t_list *lst, size_t idx)
 	i = 0;
 	while (i < idx)
 	{
+		if (lst->next == NULL)
+			return (NULL);
 		lst = lst->next;
 		i++;
 	}

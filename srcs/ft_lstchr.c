@@ -6,11 +6,11 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:59:21 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/22 13:03:50 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/23 09:00:14 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "so_long.h"
 
 t_list	*ft_lstchr(t_list *lst, bool(*chr)(void *, void *), void *dat)
 {

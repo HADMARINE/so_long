@@ -6,11 +6,11 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:07:42 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/21 16:03:43 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/23 08:57:30 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "maps.h"
+#include "so_long.h"
 
 static t_elements_map	init_elements_map(void)
 {

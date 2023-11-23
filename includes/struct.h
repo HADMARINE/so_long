@@ -6,18 +6,19 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/22 15:47:14 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/23 09:23:29 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-# include "so_long.h"
+# include "libft.h"
+# include <stdlib.h>
 
 typedef struct s_pos {
-	size_t	x;
-	size_t	y;
+	int	x;
+	int	y;
 }	t_pos;
 
 typedef struct s_imgdat {

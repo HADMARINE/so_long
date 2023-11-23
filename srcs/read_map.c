@@ -6,11 +6,11 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:15:22 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/21 14:32:55 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/23 08:57:09 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "maps.h"
+#include "so_long.h"
 
 static bool	verify_length(t_list *read_value)
 {

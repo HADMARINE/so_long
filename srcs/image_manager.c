@@ -6,11 +6,11 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:01:31 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/21 23:25:25 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/23 08:58:17 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "images.h"
+#include "so_long.h"
 
 t_mlximage	get_init_image(t_mlxvars *vars, int w, int h)
 {

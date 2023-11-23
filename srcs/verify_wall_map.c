@@ -6,11 +6,11 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:10:09 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/21 16:05:27 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/23 08:57:46 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "maps.h"
+#include "so_long.h"
 
 static bool	verify_horizontal_wall_map(char *s)
 {
