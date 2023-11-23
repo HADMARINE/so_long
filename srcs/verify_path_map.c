@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:10:55 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/23 17:43:42 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/23 18:11:11 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,15 @@ static bool	lstchr_vpm(void *val, void *dat)
 
 static bool	eval_path_node(void *node1, void *node2)
 {
-	// if (((t_path_node *)node1)->went == false && ((t_path_node *)node2)->went == true)
-	// 	return (true);
-	if (((t_path_node *)node1)->dist_e + ((t_path_node *)node1)->dist_s
-		> ((t_path_node *)node2)->dist_e + ((t_path_node *)node2)->dist_s)
+	if (((t_path_node *)node1)->went == true && ((t_path_node *)node2)->went == false)
 		return (true);
-	if (((t_path_node *)node1)->dist_e + ((t_path_node *)node1)->dist_s
-		== ((t_path_node *)node2)->dist_e + ((t_path_node *)node2)->dist_s)
+	if (((t_path_node *)node1)->went == false && ((t_path_node *)node2)->went == true)
+		return (false);
+	if (((double)((t_path_node *)node1)->dist_e + ((t_path_node *)node1)->dist_s)
+		> ((double)((t_path_node *)node2)->dist_e + ((t_path_node *)node2)->dist_s))
+		return (true);
+	if (((double)((t_path_node *)node1)->dist_e + ((t_path_node *)node1)->dist_s)
+		== ((double)((t_path_node *)node2)->dist_e + ((t_path_node *)node2)->dist_s))
 	{
 		if (((t_path_node *)node1)->dist_e > ((t_path_node *)node2)->dist_e)
 			return (true);
@@ -173,19 +175,18 @@ static bool
 
 bool	verify_path_map(t_list *map)
 {
-	t_heap	heap;
-	t_pos	*pos_e;
-	t_pos	*pos_s;
-	bool	flag;
-	// t_list	*lp;
-	// t_path_node	*pnp;
+	t_heap		heap;
+	t_pos		*pos_e;
+	t_pos		*pos_s;
+	bool		flag;
+	t_path_node	*pnp;
 
 	pos_e = get_object_pos_map(map, SL_MAP_PERSON);
 	pos_s = get_object_pos_map(map, SL_MAP_EXIT);
 	heap = init_heap();
 	flag = false;
 	push_heap(&heap, init_path_node_value_ptr(0,
-			get_heuristic_cost(pos_s, pos_e), pos_e, true), eval_path_node);
+			get_heuristic_cost(pos_s, pos_e), pos_e, false), eval_path_node);
 	while (flag == false)
 	{
 		printf("count : %zu x : %d  y : %d dist_e : %zu dist_s : %f\n", heap.count,
@@ -199,12 +200,12 @@ bool	verify_path_map(t_list *map)
 		if (((t_path_node *)heap.lst->content)->pos->x == pos_s->x
 			&& ((t_path_node *)heap.lst->content)->pos->y == pos_s->y)
 			return (true); // free values
-		((t_path_node *)heap.lst->content)->went = true;
+		// pnp = ((t_path_node *)heap.lst->content)->went = true;
 		// if (lp == heap.lst->content)
 		// {
-		// 	pnp = (t_path_node *)pop_heap(&heap, eval_path_node);
-		// 	pnp->dist_e = 1000000;
-		// 	push_heap(&heap, pnp, eval_path_node);
+		pnp = (t_path_node *)pop_heap(&heap, eval_path_node);
+		pnp->went = true;
+		push_heap(&heap, pnp, eval_path_node);
 		// }
 		// lp = heap.lst->content;
 	}
