@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 01:32:26 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/22 03:15:59 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/23 17:21:10 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	exec_while_pop_heap(t_heap *heap, size_t *parent, size_t *child)
 			*child += 1;
 }
 
-void	*pop_heap(t_heap *heap, size_t (*eval)(void *))
+void	*pop_heap(t_heap *heap, bool (*eval)(void *, void *))
 {
 	void	*val;
 	size_t	parent;
@@ -62,26 +62,26 @@ void	*pop_heap(t_heap *heap, size_t (*eval)(void *))
 	if (child + 1 <= heap->count)
 	{
 		tp = ft_lstget_idx(heap->lst, child - 1);
-		if (eval(tp->content) > eval(tp->next->content))
+		if (eval(tp->content, tp->next->content))
 			child++;
 	}
-	while (child <= heap->count && eval(ft_lstget_idx(heap->lst, child - 1))
-		< eval(ft_lstget_idx(heap->lst, parent - 1)))
+	while (child <= heap->count && eval(ft_lstget_idx(heap->lst, child - 1),
+			ft_lstget_idx(heap->lst, parent - 1)))
 		exec_while_pop_heap(heap, &parent, &child);
 	return (val);
 }
 
-void	push_heap(t_heap *heap, void *value, size_t (*eval)(void *))
+void	push_heap(t_heap *heap, void *value, bool (*eval)(void *, void *))
 {
 	size_t	child;
 	size_t	parent;
 
 	ft_lstadd_back(&heap->lst, ft_lstnew(value));
-	heap->count++;
+	heap->count += 1;
 	child = heap->count;
 	parent = child / 2;
-	while (child > 1 && eval(ft_lstget_idx(heap->lst, child - 1))
-		< eval(ft_lstget_idx(heap->lst, parent - 1)))
+	while (child > 1 && eval(ft_lstget_idx(heap->lst, child - 1),
+			ft_lstget_idx(heap->lst, parent - 1)))
 	{
 		swap_element_heap(ft_lstget_idx(heap->lst, child - 1),
 			ft_lstget_idx(heap->lst, parent - 1));

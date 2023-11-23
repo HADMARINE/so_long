@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:10:55 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/23 09:48:38 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/23 17:43:42 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
  * dest : destination
  * pos : current position
  */
-static float	get_heuristic_cost(t_pos *dest, t_pos *pos)
+static double	get_heuristic_cost(t_pos *dest, t_pos *pos)
 {
-	return (sqrt(abs((int)(dest->x - pos->x)) + abs((int)(dest->y - pos->y))));
+	return (sqrt(abs(dest->x - pos->x) + abs(dest->y - pos->y)));
 }
 
 /**
@@ -35,13 +35,21 @@ static bool	lstchr_vpm(void *val, void *dat)
 	return (false);
 }
 
-static size_t	eval_path_node(void *node)
+static bool	eval_path_node(void *node1, void *node2)
 {
-	size_t	val;
-
-	val = 0;
-	val += ((t_path_node *)node)->dist_e + ((t_path_node *)node)->dist_s;
-	return (val);
+	// if (((t_path_node *)node1)->went == false && ((t_path_node *)node2)->went == true)
+	// 	return (true);
+	if (((t_path_node *)node1)->dist_e + ((t_path_node *)node1)->dist_s
+		> ((t_path_node *)node2)->dist_e + ((t_path_node *)node2)->dist_s)
+		return (true);
+	if (((t_path_node *)node1)->dist_e + ((t_path_node *)node1)->dist_s
+		== ((t_path_node *)node2)->dist_e + ((t_path_node *)node2)->dist_s)
+	{
+		if (((t_path_node *)node1)->dist_e > ((t_path_node *)node2)->dist_e)
+			return (true);
+		return (false);
+	}
+	return (false);
 }
 
 static t_pos	get_offset_by_dir(t_direction dir)
@@ -54,9 +62,15 @@ static t_pos	get_offset_by_dir(t_direction dir)
 		offset = get_init_pos_value(1, 0);
 	else if (dir == UP)
 		offset = get_init_pos_value(0, -1);
-	else if (dir == DOWN)
+	else
 		offset = get_init_pos_value(0, 1);
 	return (offset);
+}
+
+static void	*free_and_go_vpm(t_pos *pos)
+{
+	free(pos);
+	return (NULL);
 }
 
 static t_path_node
@@ -65,41 +79,67 @@ static t_path_node
 {
 	t_pos	offset;
 	t_list	*lp;
-	t_list	*lhp;
+	t_pos	*newpos;
 
 	offset = get_offset_by_dir(dir);
-	lp = ft_lstget_idx(map, pos->x + offset.x);
+	newpos = get_init_pos_ptr_value(pos->x + offset.x, pos->y + offset.y);
+	if (newpos == NULL)
+		return (NULL);
+	lp = ft_lstget_idx(map, newpos->y);
 	if (!lp)
-		return (NULL);
-	if (*(((char *)lp->content) + pos->y + offset.y) == SL_MAP_WALL
-		|| *(((char *)lp->content) + pos->y + offset.y) == '\0')
-		return (NULL);
-	ft_printf("%p", ((t_path_node *)lp->content)->pos);
-	lhp = ft_lstchr(heap->lst, lstchr_vpm, ((t_path_node *)lp->content)->pos);
-	if (lhp != NULL)
+		return (free_and_go_vpm(newpos));
+	if (*(((char *)lp->content) + newpos->x) == SL_MAP_WALL
+		|| *(((char *)lp->content) + newpos->x) == '\0')
+		return (free_and_go_vpm(newpos));
+	lp = ft_lstchr(heap->lst, lstchr_vpm, newpos);
+	if (lp == NULL)
 	{
 		push_heap(heap, init_path_node_value_ptr(
-				0, 0.0, ((t_path_node *)lp->content)->pos), eval_path_node);
-		lhp = ft_lstchr(heap->lst, lstchr_vpm,
-				((t_path_node *)lp->content)->pos);
+				INT32_MAX, (double)INT32_MAX, newpos, false), eval_path_node);
+		lp = ft_lstchr(heap->lst, lstchr_vpm, newpos);
 	}
-	return ((t_path_node *)lhp->content);
+	return ((t_path_node *)lp->content);
 }
 
-static size_t	get_smallest_cost_from_e(t_list *map, t_pos *pos, t_heap *heap)
+static t_path_node
+	*get_map_value_by_dir_no_creation(t_list *map, t_direction dir,
+	t_pos *pos, t_heap *heap)
+{
+	t_pos	offset;
+	t_list	*lp;
+	t_pos	*newpos;
+
+	offset = get_offset_by_dir(dir);
+	newpos = get_init_pos_ptr_value(pos->x + offset.x, pos->y + offset.y);
+	if (newpos == NULL)
+		return (NULL);
+	lp = ft_lstget_idx(map, newpos->y);
+	if (!lp)
+		return (free_and_go_vpm(newpos));
+	if (*(((char *)lp->content) + newpos->x) == SL_MAP_WALL
+		|| *(((char *)lp->content) + newpos->x) == '\0')
+		return (free_and_go_vpm(newpos));
+	lp = ft_lstchr(heap->lst, lstchr_vpm, newpos);
+	if (lp == NULL)
+		return (free_and_go_vpm(newpos));
+	return ((t_path_node *)lp->content);
+}
+
+static size_t	get_smallest_cost_from_e(
+		t_list *map, t_pos *pos, t_heap *heap)
 {
 	t_path_node		*lp;
 	unsigned short	i;
 	size_t			min_e;
 
 	i = 0;
-	min_e = SIZE_MAX;
+	min_e = INT32_MAX;
 	while (i <= DOWN)
 	{
-		lp = get_map_value_by_dir(map, (t_direction)i, pos, heap);
+		lp = get_map_value_by_dir_no_creation(map, (t_direction)i++, pos, heap);
 		if (!lp)
 			continue ;
-		if (min_e < lp->dist_e)
+		if (min_e > lp->dist_e)
 			min_e = lp->dist_e;
 	}
 	return (min_e);
@@ -117,18 +157,19 @@ static bool
 	while (i <= DOWN)
 	{
 		lp = get_map_value_by_dir(map, (t_direction)i, pos, heap);
-		if (!lp)
-		{
-			i++;
-			continue ;
-		}
-		is_exist = true;
-		lp->dist_s = get_heuristic_cost(dest, lp->pos);
-		lp->dist_e = get_smallest_cost_from_e(map, lp->pos, heap);
 		i++;
+		if (!lp)
+			continue ;
+		is_exist = true;
+		if (lp->dist_e != 0)
+		{
+			lp->dist_s = get_heuristic_cost(dest, lp->pos);
+			lp->dist_e = get_smallest_cost_from_e(map, lp->pos, heap) + 1;
+		}
 	}
 	return (is_exist);
 }
+#include <stdio.h>
 
 bool	verify_path_map(t_list *map)
 {
@@ -136,23 +177,36 @@ bool	verify_path_map(t_list *map)
 	t_pos	*pos_e;
 	t_pos	*pos_s;
 	bool	flag;
+	// t_list	*lp;
+	// t_path_node	*pnp;
 
 	pos_e = get_object_pos_map(map, SL_MAP_PERSON);
 	pos_s = get_object_pos_map(map, SL_MAP_EXIT);
 	heap = init_heap();
 	flag = false;
 	push_heap(&heap, init_path_node_value_ptr(0,
-			get_heuristic_cost(pos_s, pos_e), pos_e), eval_path_node);
+			get_heuristic_cost(pos_s, pos_e), pos_e, true), eval_path_node);
 	while (flag == false)
 	{
+		printf("count : %zu x : %d  y : %d dist_e : %zu dist_s : %f\n", heap.count,
+			((t_path_node *)heap.lst->content)->pos->x,
+			((t_path_node *)heap.lst->content)->pos->y,
+			((t_path_node *)heap.lst->content)->dist_e,
+			((t_path_node *)heap.lst->content)->dist_s);
 		if (update_neighbors_dist(map, ((t_path_node *)heap.lst->content)->pos,
 				pos_s, &heap) == false)
 			return (false); // free values
 		if (((t_path_node *)heap.lst->content)->pos->x == pos_s->x
 			&& ((t_path_node *)heap.lst->content)->pos->y == pos_s->y)
-		{
 			return (true); // free values
-		}
+		((t_path_node *)heap.lst->content)->went = true;
+		// if (lp == heap.lst->content)
+		// {
+		// 	pnp = (t_path_node *)pop_heap(&heap, eval_path_node);
+		// 	pnp->dist_e = 1000000;
+		// 	push_heap(&heap, pnp, eval_path_node);
+		// }
+		// lp = heap.lst->content;
 	}
 	return (true); // free values
 }

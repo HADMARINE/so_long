@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/23 09:23:29 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/23 17:37:07 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include <stdlib.h>
+# include <stdbool.h>
 
 typedef struct s_pos {
 	int	x;
@@ -56,7 +57,8 @@ typedef struct s_mlximage {
 */
 typedef struct s_path_node {
 	size_t	dist_e;
-	float	dist_s;
+	double	dist_s;
+	bool	went;
 	t_pos	*pos;
 
 }	t_path_node;
@@ -69,12 +71,13 @@ typedef enum e_direction {
 }	t_direction;
 
 t_pos		get_init_pos(void);
-t_pos		get_init_pos_value(size_t x, size_t y);
+t_pos		get_init_pos_value(int x, int y);
 t_pos		*get_init_pos_ptr(void);
-t_pos		*get_init_pos_ptr_value(size_t x, size_t y);
+t_pos		*get_init_pos_ptr_value(int x, int y);
 t_gamedat	get_init_gamedat(void);
 t_mlxvars	get_init_mlxvars(void);
 t_path_node	init_path_node(void);
-t_path_node	*init_path_node_value_ptr(size_t e, float s, t_pos *pos);
+t_path_node	*init_path_node_value_ptr(size_t e,
+				double s, t_pos *pos, bool went);
 
 #endif
