@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:32:47 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/23 17:24:47 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/24 15:26:09 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,3 @@ int	main(void)
 	}
 	return (0);
 }
-
-// size_t	eval(void *v)
-// {
-// 	return (*(size_t *)v);
-// }
-
-// int	main(void)
-// {
-// 	t_heap	heap;
-// 	int *a = (int *)malloc(sizeof(int));
-// 	int *b =  (int *)malloc(sizeof(int));
-// 	int *c =  (int *)malloc(sizeof(int));
-
-// 	*a = 1;
-// 	*b = 2;
-// 	*c = 3;
-
-// 	heap = init_heap();
-// 	push_heap(&heap, a, eval);
-// 	push_heap(&heap, b, eval);
-// 	push_heap(&heap, c, eval);
-
-// 	// int *d = (int *)pop_heap(&heap, eval);
-// 	// int *d = heap.lst->content;
-// 	// ft_printf("%d", *d);
-// 	ft_printf("%d", *(int *)pop_heap(&heap, eval));
-// 	ft_printf("%d", *(int *)pop_heap(&heap, eval));
-// 	ft_printf("%d", *(int *)pop_heap(&heap, eval));
-// }
