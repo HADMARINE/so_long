@@ -35,7 +35,9 @@ SRCS_RAW = main.c \
 			utils_ft_dellast.c \
 			init_path_node.c \
 			init_pos.c \
-			ft_lstchr.c
+			ft_lstchr.c \
+			ft_lstadd_sort.c \
+			ft_lstsort.c
 SRCS = $(addprefix $(DIR)/,$(SRCS_RAW))
 OBJS = $(SRCS:c=o)
 INCLUDES = -I./includes -I./libft -I./ft_printf/includes
