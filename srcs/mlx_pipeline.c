@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:02:57 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/23 09:10:04 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/24 14:54:51 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,14 @@
 
 static bool	maps_pipeline(t_mlxvars *vars)
 {
-	t_list	*map;
-
-	(void)vars;
-	map = read_map("maps/level1.ber");
-	if (map == NULL)
+	vars->map = read_map("maps/level1.ber");
+	if (vars->map == NULL)
 		return (false);
-	if (verify_wall_map(map) == false
-		|| verify_elements_in_map(map) == false
-		|| verify_path_map(map) == false)
+	if (verify_wall_map(vars->map) == false
+		|| verify_elements_in_map(vars->map) == false
+		|| verify_path_map(vars->map) == false)
 	{
-		ft_lstclear(&map, free);
+		ft_lstclear(&vars->map, free);
 		return (false);
 	}
 	return (true);

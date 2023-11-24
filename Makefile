@@ -6,7 +6,7 @@
 #    By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 11:05:03 by lhojoon           #+#    #+#              #
-#    Updated: 2023/11/21 17:01:37 by lhojoon          ###   ########.fr        #
+#    Updated: 2023/11/24 14:50:21 by lhojoon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,9 @@ SRCS_RAW = main.c \
 			init_pos.c \
 			ft_lstchr.c \
 			ft_lstadd_sort.c \
-			ft_lstsort.c
+			ft_lstsort.c \
+			verify_path_map_ext1.c \
+			verify_path_map_ext2.c
 SRCS = $(addprefix $(DIR)/,$(SRCS_RAW))
 OBJS = $(SRCS:c=o)
 INCLUDES = -I./includes -I./libft -I./ft_printf/includes

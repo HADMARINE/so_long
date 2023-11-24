@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:58:49 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/21 00:07:07 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/24 14:56:42 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ static void	img_lst_clear(t_list **lst, t_mlxvars *vars)
 
 bool	free_mlx(t_mlxvars *p)
 {
-	if (p == NULL || p->mlx == NULL)
+	if (p == NULL)
+		return (false);
+	if (p->map != NULL)
+		ft_lstclear(&p->map, free);
+	if (p->mlx == NULL)
 		return (false);
 	if (p->mlx_win != NULL)
 	{
