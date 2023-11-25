@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:50:23 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/21 15:42:49 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/25 20:30:08 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # define SL_IMG_SIZE 32
 
-# define SL_PROGRAM_NAME "SO_LONG"
+# define SL_PROGRAM_NAME "Récupérez vos chiens et sortez!!"
 
 # define SL_MAP_BLANK '0'
 # define SL_MAP_WALL '1'

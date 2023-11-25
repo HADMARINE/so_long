@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:56:00 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/24 15:25:58 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/25 17:08:47 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_gamedat	get_init_gamedat(void)
 	t_gamedat	vars;
 
 	vars.userpos = get_init_pos();
+	vars.size = get_init_pos();
 	return (vars);
 }
 
@@ -28,6 +29,7 @@ t_mlxvars	get_init_mlxvars(void)
 	vars.mlx_win = NULL;
 	vars.imgs = NULL;
 	vars.gamedat = get_init_gamedat();
+	vars.canvas = NULL;
 	return (vars);
 }
 
@@ -39,12 +41,5 @@ t_mlxvars	init_mlxvars(void)
 	vars.mlx = mlx_init();
 	if (!vars.mlx)
 		exit(EXIT_FAILURE);
-	vars.mlx_win = mlx_new_window(vars.mlx,
-			SL_WINDOW_SIZE_W, SL_WINDOW_SIZE_H, SL_PROGRAM_NAME);
-	if (!vars.mlx_win)
-	{
-		free_mlx(&vars);
-		exit(EXIT_FAILURE);
-	}
 	return (vars);
 }

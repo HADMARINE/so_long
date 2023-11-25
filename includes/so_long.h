@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:03:47 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/23 08:53:53 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/25 20:16:07 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@
 # include "events.h"
 # include "images.h"
 # include "ft_heap.h"
+# include "draw.h"
 
 #endif

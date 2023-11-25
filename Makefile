@@ -6,7 +6,7 @@
 #    By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 11:05:03 by lhojoon           #+#    #+#              #
-#    Updated: 2023/11/24 14:50:21 by lhojoon          ###   ########.fr        #
+#    Updated: 2023/11/25 20:28:24 by lhojoon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRCS_RAW = main.c \
 			verify_path_map.c \
 			x11_events.c \
 			key_event_manager.c \
-			image_manager.c \
+			image_manager_ext1.c \
+			image_manager_ext2.c \
 			utils_get_object_pos_list_map.c \
 			heap.c \
 			utils_ft_dellast.c \
@@ -39,7 +40,10 @@ SRCS_RAW = main.c \
 			ft_lstadd_sort.c \
 			ft_lstsort.c \
 			verify_path_map_ext1.c \
-			verify_path_map_ext2.c
+			verify_path_map_ext2.c \
+			mlx_utils.c \
+			draw_manager.c \
+			map_manager.c
 SRCS = $(addprefix $(DIR)/,$(SRCS_RAW))
 OBJS = $(SRCS:c=o)
 INCLUDES = -I./includes -I./libft -I./ft_printf/includes

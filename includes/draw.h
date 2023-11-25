@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_sort.c                                   :+:      :+:    :+:   */
+/*   draw.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 10:34:29 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/25 15:06:24 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/25 20:04:51 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/25 20:16:37 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#ifndef DRAW_H
+# define DRAW_H
 
-/**
- * lst : entire list
- * new : new element
- * f : function which evaluates value
-*/
-void	ft_lstadd_sort(t_list **lst, t_list *new, bool(*f)(void *, void *))
-{
-	ft_lstadd_front(lst, new);
-	ft_lstsort(*lst, f);
-}
+# include "struct.h"
+
+void	draw_map(t_mlxvars *vars);
+
+#endif
