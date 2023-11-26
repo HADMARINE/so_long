@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:02:57 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/25 20:27:48 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/26 18:25:44 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	maps_pipeline(t_mlxvars *vars)
 		return (false);
 	if (verify_wall_map(vars->map) == false
 		|| verify_elements_in_map(vars->map) == false
-		|| verify_path_map(vars->map) == false)
+		|| verify_path_map(vars) == false)
 	{
 		ft_lstclear(&vars->map, free);
 		return (false);

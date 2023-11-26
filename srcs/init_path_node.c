@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:20:39 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/23 17:32:22 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/26 18:15:18 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_path_node	*init_path_node_value_ptr(size_t e, double s, t_pos *pos, bool went)
 	node = (t_path_node *)malloc(sizeof(t_path_node));
 	node->dist_e = e;
 	node->dist_s = s;
-	node->pos = pos;
+	node->pos = get_init_pos_ptr_value(pos->x, pos->y);
 	node->went = went;
 	return (node);
 }
