@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/26 18:32:24 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/26 22:33:26 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_pos {
 }	t_pos;
 
 typedef struct s_gamedat {
-	t_pos	userpos;
+	t_pos	*userpos;
 	t_pos	size;
 	size_t	item_count;
 	size_t	move_count;

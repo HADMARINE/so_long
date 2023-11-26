@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:02:57 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/26 18:25:44 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/26 23:18:36 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	maps_pipeline(t_mlxvars *vars)
 {
-	vars->map = read_map("maps/level1.ber");
+	vars->map = read_map(SL_MAP_DIR);
 	if (vars->map == NULL)
 		return (false);
 	if (verify_wall_map(vars->map) == false
@@ -35,6 +35,7 @@ static bool	maps_pipeline(t_mlxvars *vars)
 			vars->gamedat.size.y * SL_IMG_SIZE);
 	if (!vars->canvas)
 		return (false);
+	vars->gamedat.userpos = get_object_pos_map(vars->map, SL_MAP_PERSON);
 	return (true);
 }
 

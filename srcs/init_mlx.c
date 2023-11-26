@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:56:00 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/26 18:32:39 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/26 22:33:22 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_gamedat	get_init_gamedat(void)
 {
 	t_gamedat	vars;
 
-	vars.userpos = get_init_pos();
+	vars.userpos = NULL;
 	vars.size = get_init_pos();
 	vars.item_count = 0;
 	vars.move_count = 0;
