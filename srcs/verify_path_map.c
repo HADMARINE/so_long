@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:10:55 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/28 13:12:58 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/28 14:00:42 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,12 +116,12 @@ bool	verify_path_map(t_mlxvars *vars)
 	pos_e = get_object_pos_map(vars->map, SL_MAP_PERSON);
 	pos_s = get_object_pos_map(vars->map, SL_MAP_EXIT);
 	if (pos_e == NULL || pos_s == NULL)
-		return (false);
+		return (free_and_go_main_vpm(false, NULL, pos_e, pos_s));
 	if (verify_path_map_one(vars->map, pos_e, pos_s) == false)
-		return (false);
+		return (free_and_go_main_vpm(false, NULL, pos_e, pos_s));
 	items_lst = get_object_pos_list_map(vars->map, SL_MAP_ITEM);
 	if (items_lst == NULL)
-		return (false);
+		return (free_and_go_main_vpm(false, &items_lst, pos_e, pos_s));
 	vars->gamedat.item_count = ft_lstsize(items_lst);
 	ilp = items_lst;
 	while (ilp != NULL)
