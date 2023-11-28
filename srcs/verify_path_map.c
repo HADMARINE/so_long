@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:10:55 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/26 18:34:16 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/28 13:12:58 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ bool	verify_path_map(t_mlxvars *vars)
 	ilp = items_lst;
 	while (ilp != NULL)
 	{
-		if (verify_path_map_one(vars->map, ilp->content, pos_e) == false
+		if (verify_path_map_one(vars->map, pos_e, ilp->content) == false
 			|| verify_path_map_one(vars->map, ilp->content, pos_s) == false)
 			return (free_and_go_main_vpm(false, &items_lst, pos_e, pos_s));
 		ilp = ilp->next;

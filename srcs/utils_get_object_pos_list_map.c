@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 23:09:34 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/23 09:30:59 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/28 13:07:21 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	init_get_object_pos_list_map_values(
 	int *y, t_list **mapp, t_list *map, t_list **pos_list)
 {
-	*y = 0;
+	*y = 1;
 	*mapp = map->next;
 	*pos_list = NULL;
 }
@@ -51,7 +51,7 @@ t_list	*get_object_pos_list_map(t_list *map, char element)
 	init_get_object_pos_list_map_values(&y, &mapp, map, &pos_list);
 	while (mapp->next != NULL)
 	{
-		x = 0;
+		x = 1;
 		while (*((char *)mapp->content + x))
 		{
 			if (*((char *)mapp->content + x) == element)

@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:50:23 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/26 23:18:28 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/28 13:21:21 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 # define SL_IMG_SIZE 32
 
-# define SL_PROGRAM_NAME "Récupérez vos chiens et sortez!!"
-# define SL_MAP_DIR "maps/level1.ber"
+# define SL_PROGRAM_NAME "Take your dogs and get out!"
+# define SL_MAP_DIR "maps/level1_1.ber"
 
 # define SL_MAP_BLANK '0'
 # define SL_MAP_WALL '1'
