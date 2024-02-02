@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:15:22 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/23 08:57:09 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/02 17:12:46 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,12 @@ t_list	*read_map(char *filename)
 	char	*s;
 	t_list	*tmplst;
 
+	fd = open(filename, O_DIRECTORY);
+	if (fd != -1)
+		return (close(fd), NULL);
 	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (NULL);
 	s = get_next_line(fd);
 	read_value = NULL;
 	while (s)

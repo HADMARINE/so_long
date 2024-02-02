@@ -6,11 +6,11 @@
 #    By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 11:05:03 by lhojoon           #+#    #+#              #
-#    Updated: 2023/11/26 22:31:30 by lhojoon          ###   ########.fr        #
+#    Updated: 2024/02/02 16:51:23 by lhojoon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = so_long.out
+NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MINILIBX_FLAGS = -I/usr/include -Imlx_linux

@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/26 22:33:26 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/02 16:59:32 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_mlxvars {
 	t_gamedat	gamedat;
 	t_list		*map;
 	t_mlximage	*canvas;
+	char		*map_path;
 }	t_mlxvars;
 
 /**
