@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:02:57 by lhojoon           #+#    #+#             */
-/*   Updated: 2024/02/02 17:12:19 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/02 17:45:53 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 static bool	maps_pipeline(t_mlxvars *vars)
 {
-	// vars->map = read_map(vars->map_path);
-	vars->map = read_map(SL_MAP_DIR);
+	vars->map = read_map(vars->map_path);
 	if (vars->map == NULL)
 		return (false);
 	if (verify_wall_map(vars->map) == false

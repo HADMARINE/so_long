@@ -6,13 +6,13 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:32:47 by lhojoon           #+#    #+#             */
-/*   Updated: 2024/02/02 17:08:48 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/02 17:45:49 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+int	main(int argc, char *argv[])
 {
 	t_mlxvars	vars;
 
@@ -26,8 +26,8 @@ int	main(int argc, char **argv)
 		ft_printf("Error - .ber\n");
 		exit(EXIT_FAILURE);
 	}
-	vars.map_path = argv[1];
 	vars = init_mlxvars();
+	vars.map_path = argv[1];
 	if (mlx_pipeline(&vars) == false)
 	{
 		ft_printf("Error\n");
