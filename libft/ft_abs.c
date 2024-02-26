@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 14:43:19 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/16 11:12:55 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/29 16:29:14 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/29 16:30:31 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_absi(int v)
 {
-	t_list	*lp;
+	if (v < 0)
+		return (-v);
+	return (v);
+}
 
-	if (!lst || !new)
-		return ;
-	lp = *lst;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	lp = ft_lstlast(*lst);
-	lp->next = new;
+long	ft_absl(long v)
+{
+	if (v < 0)
+		return (-v);
+	return (v);
 }

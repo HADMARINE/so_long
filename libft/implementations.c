@@ -6,14 +6,14 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:18:32 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/14 00:00:10 by lhojoon          ###   ########.fr       */
+/*   Updated: 2023/11/28 15:07:31 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int		puthexadecimal(unsigned long long v, short maj);
-char	*utoa(unsigned int n);
+char	*ft_utoa(unsigned int n);
 
 int	c_exec(va_list *valist)
 {
@@ -77,7 +77,7 @@ int	u_exec(va_list *valist)
 	int				len;
 
 	v = va_arg(*valist, unsigned int);
-	str = utoa(v);
+	str = ft_utoa(v);
 	ft_putstr_fd(str, 1);
 	len = ft_strlen(str);
 	free(str);

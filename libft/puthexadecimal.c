@@ -1,44 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utoa.c                                             :+:      :+:    :+:   */
+/*   puthexadecimal.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 17:10:42 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/13 18:07:55 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/13 15:38:24 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/28 15:07:53 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-static unsigned int	getlength(unsigned int n)
+int	puthexadecimal(unsigned long long v, short maj)
 {
-	unsigned int	len;
+	char	lst[17];
+	int		count;
 
-	len = 2;
-	while (n >= 10)
+	count = 0;
+	if (maj == 1)
+		ft_strlcpy(lst, "0123456789ABCDEF", 17);
+	else
+		ft_strlcpy(lst, "0123456789abcdef", 17);
+	if (v >= 16)
 	{
-		len++;
-		n /= 10;
+		count += puthexadecimal(v / (unsigned long long)16, maj);
 	}
-	return (len);
-}
-
-char	*utoa(unsigned int n)
-{
-	char	*str;
-	char	*sp;
-
-	str = (char *)malloc(getlength(n) * sizeof(char));
-	if (!str)
-		return (NULL);
-	sp = str + getlength(n) - 1;
-	*sp-- = '\0';
-	while (sp - str >= 0)
-	{
-		*sp-- = '0' + (n % 10);
-		n /= 10;
-	}
-	return (str);
+	ft_putchar_fd(lst[v % (unsigned long long)16], 1);
+	count++;
+	return (count);
 }

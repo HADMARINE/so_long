@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:19:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2024/02/02 16:59:32 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/26 13:42:26 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,22 @@
 # include <X11/Xlib.h>
 # include <X11/extensions/XShm.h>
 
-typedef struct s_pos {
+typedef struct s_pos
+{
 	int	x;
 	int	y;
 }	t_pos;
 
-typedef struct s_gamedat {
+typedef struct s_gamedat
+{
 	t_pos	*userpos;
 	t_pos	size;
 	size_t	item_count;
 	size_t	move_count;
 }	t_gamedat;
 
-typedef struct s_mlximage {
+typedef struct s_mlximage
+{
 	XImage			*image;
 	Pixmap			pix;
 	GC				gc;
@@ -45,7 +48,8 @@ typedef struct s_mlximage {
 	XShmSegmentInfo	shm;
 }	t_mlximage;
 
-typedef struct s_mlxvars {
+typedef struct s_mlxvars
+{
 	void		*mlx;
 	void		*mlx_win;
 	t_list		*imgs;
@@ -60,7 +64,8 @@ typedef struct s_mlxvars {
  * dist_s	: distance heuristic to destination (sortie)
  * pos		: position, coordination
 */
-typedef struct s_path_node {
+typedef struct s_path_node
+{
 	size_t	dist_e;
 	double	dist_s;
 	bool	went;
@@ -68,12 +73,19 @@ typedef struct s_path_node {
 
 }	t_path_node;
 
-typedef enum e_direction {
+typedef enum e_direction
+{
 	LEFT = 0,
 	RIGHT = 1,
 	UP = 2,
 	DOWN = 3
 }	t_direction;
+
+typedef struct s_dir_and_exit
+{
+	t_direction	dir;
+	bool		exit_block;
+}	t_dir_and_exit;
 
 t_pos		get_init_pos(void);
 t_pos		get_init_pos_value(int x, int y);

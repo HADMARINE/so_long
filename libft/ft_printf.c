@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 11:06:14 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/10 11:44:28 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/13 13:44:52 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/28 15:07:06 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+int	parser(const char *str, va_list *valist);
+int	counter(const char *str);
+
+int	ft_printf(const char *str, ...)
 {
-	if (c >= '0' && c <= '9')
-	{
-		return (1);
-	}
-	return (0);
+	va_list	valist;
+	int		len;
+
+	va_start(valist, str);
+	len = parser(str, &valist);
+	va_end(valist);
+	return (len);
 }

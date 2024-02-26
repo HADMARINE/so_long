@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_lstswap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 15:50:50 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/08 15:52:41 by lhojoon          ###   ########.fr       */
+/*   Created: 2024/02/05 15:51:49 by lhojoon           #+#    #+#             */
+/*   Updated: 2024/02/05 15:51:51 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	ft_lstswap(t_list *a, t_list *b)
 {
-	ft_putstr_fd(s, fd);
-	ft_putchar_fd('\n', fd);
+	void	*tmp;
+
+	tmp = a->content;
+	a->content = b->content;
+	b->content = tmp;
 }

@@ -6,7 +6,7 @@
 #    By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 11:05:03 by lhojoon           #+#    #+#              #
-#    Updated: 2024/02/02 16:51:23 by lhojoon          ###   ########.fr        #
+#    Updated: 2024/02/26 13:01:49 by lhojoon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,15 +53,15 @@ MINILIBX_A = mlx_linux/libmlx_Linux.a
 
 all: $(NAME)
 $(NAME): libcompile $(OBJS)
-	$(CC) $(OBJS) $(DEBUG) -Llibft -l:libft.a -Lft_printf -l:libftprintf.a -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(OBJS) $(DEBUG) -Llibft -l:libft.a -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 clean:
 	rm $(OBJS) $(OBJB) -f
 fclean: clean libclean
 	rm $(NAME) -f
 re: fclean all
 
-libcompile: libftcompile minilibxcompile ftprintfcompile
-libclean: libftclean minilibxclean ftprintfclean
+libcompile: libftcompile minilibxcompile
+libclean: libftclean minilibxclean
 
 libftcompile:
 	$(MAKE) bonus -C libft
@@ -71,10 +71,6 @@ minilibxcompile:
 	$(MAKE) -C mlx_linux
 minilibxclean:
 	$(MAKE) clean -C mlx_linux
-ftprintfcompile:
-	$(MAKE) -C ft_printf
-ftprintfclean:
-	$(MAKE) fclean -C ft_printf
 
 %.o: %.c
 	$(CC) -c $< -o $@ $(MINILIBX_FLAGS) $(CFLAGS) $(INCLUDES) $(DEBUG)

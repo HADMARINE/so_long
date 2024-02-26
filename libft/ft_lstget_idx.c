@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_lstget_idx.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 16:19:01 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/09 12:52:50 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/28 16:43:54 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/28 16:44:01 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+t_list	*ft_lstget_idx(t_list *lst, size_t idx)
 {
-	void	*bloc;
+	size_t	i;
 
-	if (count == 0 || size == 0)
+	i = 0;
+	while (i < idx)
 	{
-		bloc = malloc(sizeof(char));
-		if (!bloc)
+		if (lst->next == NULL)
 			return (NULL);
-		*(char *)bloc = '\0';
-		return (bloc);
+		lst = lst->next;
+		i++;
 	}
-	if ((unsigned)count != count || (unsigned)size != size)
-		return (NULL);
-	bloc = malloc(count * size);
-	if (bloc)
-		ft_bzero(bloc, count * size);
-	return (bloc);
+	return (lst);
 }

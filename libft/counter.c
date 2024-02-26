@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   counter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 11:53:41 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/10 14:33:34 by lhojoon          ###   ########.fr       */
+/*   Created: 2023/11/16 22:57:35 by lhojoon           #+#    #+#             */
+/*   Updated: 2023/11/28 15:06:50 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+int	counter(const char *str)
 {
-	t_list	*e;
+	char			*sp;
+	char			tmpch;
+	unsigned int	len;
 
-	e = (t_list *)malloc(sizeof(t_list));
-	if (!e)
-		return (NULL);
-	e->content = content;
-	e->next = NULL;
-	return (e);
+	len = 0;
+	sp = (char *)str;
+	while (*sp)
+	{
+		if (*sp == '%' && *(sp + 1))
+		{
+			tmpch = *ft_strchr("cspdiuxX%", *(sp + 1));
+			if (tmpch != '\0')
+			{
+				sp++;
+				len++;
+			}
+		}
+		sp++;
+	}
+	return (len);
 }

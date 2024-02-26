@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin_many.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 16:27:13 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/09 12:55:34 by lhojoon          ###   ########.fr       */
+/*   Created: 2024/02/12 11:47:57 by lhojoon           #+#    #+#             */
+/*   Updated: 2024/02/12 12:05:57 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *src)
+char	*ft_strjoin_many(int num, ...)
 {
+	va_list	valist;
 	char	*s;
-	char	*p;
-	char	*sp;
+	char	*ts;
+	int		i;
 
-	s = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1));
-	if (!s)
-		return (NULL);
-	p = (char *)src;
-	sp = s;
-	while (*p)
+	va_start(valist, num);
+	if (num == 1)
 	{
-		*sp++ = *p++;
+		ts = NULL;
+		s = va_arg(valist, char *);
+		ft_strlcpy(ts, s, ft_strlen(s));
+		return (s);
 	}
-	*sp = '\0';
+	i = 1;
+	s = va_arg(valist, char *);
+	while (i < num)
+	{
+		ts = ft_strjoin(s, va_arg(valist, char *));
+		if (i != 1)
+			free(s);
+		s = ts;
+		i++;
+	}
 	return (s);
 }

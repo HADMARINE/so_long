@@ -6,25 +6,11 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 20:28:11 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/26 23:07:23 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/26 13:14:27 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static void	e_exit(t_mlxvars *vars)
-{
-	if (vars->gamedat.item_count != 0)
-		return ;
-	ft_printf("You escaped ! Moves : %d\n", vars->gamedat.move_count + 1);
-	free_mlx(vars);
-	exit(EXIT_SUCCESS);
-}
-
-static void	e_wall(t_mlxvars *vars)
-{
-	(void)vars;
-}
 
 static void	e_blank(t_mlxvars *vars, t_pos *newpos)
 {
@@ -44,6 +30,22 @@ static void	e_blank(t_mlxvars *vars, t_pos *newpos)
 			+ newpos->x) = tmp;
 	vars->gamedat.userpos->x = newpos->x;
 	vars->gamedat.userpos->y = newpos->y;
+}
+
+static void	e_exit(t_mlxvars *vars)
+{
+	if (vars->gamedat.item_count != 0)
+	{
+		return ;
+	}
+	ft_printf("You escaped ! Moves : %d\n", vars->gamedat.move_count + 1);
+	free_mlx(vars);
+	exit(EXIT_SUCCESS);
+}
+
+static void	e_wall(t_mlxvars *vars)
+{
+	(void)vars;
 }
 
 static void	e_item(t_mlxvars *vars, t_pos *newpos)

@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:50:04 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/26 18:23:16 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/26 13:38:54 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ bool	free_and_go_lst_vpmo(bool value, t_list *lst)
 }
 
 t_path_node
-	*get_map_value_by_dir(t_list *map, t_direction dir,
+	*get_map_value_by_dir(t_list *map, t_dir_and_exit direxit,
 	t_pos *pos, t_list **lst)
 {
 	t_pos	offset;
 	t_list	*lp;
 	t_pos	*newpos;
 
-	offset = get_offset_by_dir(dir);
+	offset = get_offset_by_dir(direxit.dir);
 	newpos = get_init_pos_ptr_value(pos->x + offset.x, pos->y + offset.y);
 	if (newpos == NULL)
 		return (NULL);
@@ -57,7 +57,8 @@ t_path_node
 	if (!lp)
 		return (free_and_go_vpm(newpos));
 	if (*(((char *)lp->content) + newpos->x) == SL_MAP_WALL
-		|| *(((char *)lp->content) + newpos->x) == '\0')
+		|| *(((char *)lp->content) + newpos->x) == '\0' || (direxit.exit_block
+			&& *(((char *)lp->content) + newpos->x) == SL_MAP_EXIT))
 		return (free_and_go_vpm(newpos));
 	lp = ft_lstchr(*lst, lstchr_vpm, newpos);
 	if (lp == NULL)

@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:03:47 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/25 20:16:07 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/26 13:01:24 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "libft.h"
 # include "definitions.h"
 # include "struct.h"
-# include "ft_printf.h"
 # include "get_next_line.h"
 # include <mlx.h>
 # include <fcntl.h>

@@ -6,7 +6,7 @@
 /*   By: lhojoon <lhojoon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:54:25 by lhojoon           #+#    #+#             */
-/*   Updated: 2023/11/10 15:24:37 by lhojoon          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:22:50 by lhojoon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 64
+# endif
 
 void	ft_bzero(void *s, size_t n);
 int		ft_isalnum(int c);
@@ -65,5 +70,16 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+int		ft_printf(const char *str, ...);
+char	*ft_utoa(unsigned int n);
+char	*get_next_line(int fd);
+void	push_stack(t_list **lst, t_list *new);
+t_list	*pop_stack(t_list **lst);
+t_list	*ft_lstget_idx(t_list *lst, size_t idx);
+int		ft_absi(int v);
+long	ft_absl(long v);
+void	ft_lstswap(t_list *a, t_list *b);
+char	*ft_strjoin_many(int num, ...);
+void	ft_freesplit(char **split);
 
 #endif
